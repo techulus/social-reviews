@@ -1,0 +1,39 @@
+{
+	"name": "social-reviews",
+	"version": "0.1.0",
+	"description": "A compact solution for showing social reviews",
+	"main": "bin/social-reviews.min.js",
+	"scripts": {
+		"build": "rollup -c && cp bin/social-reviews.min.js demo/ && cp bin/social-reviews.min.js.map demo/",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"twitter",
+		"reviews",
+		"widget"
+	],
+	"author": "Arjun Komath <arjunkomath@gmail.com>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/techulus/social-reviews"
+	},
+	"bugs": {
+		"url": "https://github.com/techulus/social-reviews/issues"
+	},
+	"homepage": "https://github.com/techulus/social-reviews",
+	"devDependencies": {
+		"@babel/core": "^7.0.0-beta.35",
+		"@babel/preset-env": "^7.0.0-beta.35",
+		"rollup": "^0.57.0",
+		"rollup-plugin-alias": "^1.4.0",
+		"rollup-plugin-babel": "^4.0.0-beta.0",
+		"rollup-plugin-commonjs": "^8.2.6",
+		"rollup-plugin-node-resolve": "^3.0.0",
+		"rollup-plugin-uglify": "^2.0.1",
+		"uglify-es": "^3.2.2"
+	},
+	"dependencies": {
+		"siema": "^1.5.1"
+	}
+}
