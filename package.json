@@ -4,7 +4,7 @@
 	"description": "A compact solution for showing social reviews",
 	"main": "bin/social-reviews.min.js",
 	"scripts": {
-		"build": "rollup -c && cp bin/social-reviews.min.js demo/ && cp bin/social-reviews.min.js.map demo/",
+		"build": "rollup -c && cp bin/social-reviews.min.js docs/ && cp bin/social-reviews.min.js.map docs/",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [
@@ -30,10 +30,11 @@
 		"rollup-plugin-babel": "^4.0.0-beta.0",
 		"rollup-plugin-commonjs": "^8.2.6",
 		"rollup-plugin-node-resolve": "^3.0.0",
+		"rollup-plugin-postcss": "^1.6.2",
 		"rollup-plugin-uglify": "^2.0.1",
 		"uglify-es": "^3.2.2"
 	},
 	"dependencies": {
-		"siema": "^1.5.1"
+		"@glidejs/glide": "3.2.3"
 	}
 }
