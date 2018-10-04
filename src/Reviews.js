@@ -7,14 +7,32 @@ const defaultOptions = {
 	linkColor: "rgb(33, 153, 256)", // default is blue
 	theme: "light" // or dark
 };
+
 export default class Reviews {
 	constructor(options) {
 		this.options = options;
 		this.options.className = `${options.selector.replace("#", "")}-tweets`;
 
+		this.carouselOptions = {
+			type: "carousel",
+			perView: 3,
+			gap: 20,
+			autoplay: 5000,
+			animationDuration: 750,
+			hoverpause: true,
+			breakpoints: {
+				1200: {
+					perView: 2
+				},
+				760: {
+					perView: 1
+				}
+			}
+		};
+
 		const reviews = this.generateReviews(options.tweetIds);
 		this.updateContainer(options.selector, reviews);
-		this.initializeCarousel(options.selector, options.carouselOptions || {});
+		this.initializeCarousel(options.selector, Object.assign({}, this.carouselOptions, options.carouselOptions));
 		this.initializeTwitter();
 	}
 
@@ -60,21 +78,6 @@ export default class Reviews {
 	}
 
 	initializeCarousel(selector, options) {
-		new Glide(selector, {
-			type: "carousel",
-			perView: 3,
-			gap: 20,
-			autoplay: 5000,
-			animationDuration: 750,
-			hoverpause: true,
-			breakpoints: {
-				1200: {
-					perView: 2
-				},
-				760: {
-					perView: 1
-				}
-			}
-		}).mount();
+		new Glide(selector, options).mount();
 	}
 }
