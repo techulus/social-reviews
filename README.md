@@ -1,3 +1,8 @@
+<a href="https://techulus.com" target="_blank">
+  <img src="https://techulus.in/assets/img/logo.png" width="200"/>
+</a>
+
+
 # Social Reviews
 Social proof your website and Impress your web visitors with Twitter / Instagram testimonials.
 
