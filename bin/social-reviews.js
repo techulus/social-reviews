@@ -10023,6 +10023,9 @@
   var css = ".glide{position:relative;width:100%;box-sizing:border-box}.glide *{box-sizing:inherit}.glide__track{overflow:hidden}.glide__slides{position:relative;width:100%;list-style:none;backface-visibility:hidden;transform-style:preserve-3d;touch-action:pan-Y;overflow:hidden;padding:0;white-space:nowrap;display:flex;flex-wrap:nowrap;will-change:transform}.glide__slides--dragging{user-select:none}.glide__slide{width:100%;height:100%;flex-shrink:0;white-space:normal;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}.glide__slide a{user-select:none;-webkit-user-drag:none;-moz-user-select:none;-ms-user-select:none}.glide__arrows{-webkit-touch-callout:none;user-select:none}.glide__bullets{-webkit-touch-callout:none;user-select:none}.glide--rtl{direction:rtl}\n";
   styleInject(css);
 
+  var css$1 = ".glide__slide {\n\ttext-align: center;\n}";
+  styleInject(css$1);
+
   var defaultOptions = {
     conversation: "none",
     // or all
@@ -10034,11 +10037,33 @@
 
   };
 
+  var errorLog = function errorLog(data) {
+    console.error("[social-reviews]", data);
+  };
+
+  var validSocialNetworks = ['twitter', 'instagram'];
+
   var Reviews =
   /*#__PURE__*/
   function () {
     function Reviews(options) {
       _classCallCheck(this, Reviews);
+
+      if (!options) {
+        return errorLog("Required options are missing, please check documentation: https://github.com/techulus/social-reviews#quick-start");
+      }
+
+      if (!options.selector) {
+        return errorLog("Option 'selector' is missing, please check documentation: https://github.com/techulus/social-reviews#quick-start");
+      }
+
+      if (!options.type || !validSocialNetworks.includes(options.type)) {
+        return errorLog("Option 'type' is missing or invalid, please check documentation: https://github.com/techulus/social-reviews#quick-start");
+      }
+
+      if (!options.postIds || !options.postIds.length) {
+        return errorLog("Option 'postIds' is missing, please check documentation: https://github.com/techulus/social-reviews#quick-start");
+      }
 
       this.options = options;
       this.options.className = "".concat(options.selector.replace("#", ""), "-tweets");
@@ -10058,10 +10083,18 @@
           }
         }
       };
-      var reviews = this.generateReviews(options.tweetIds);
-      this.updateContainer(options.selector, reviews);
-      this.initializeCarousel(options.selector, Object.assign({}, this.carouselOptions, options.carouselOptions));
-      this.initializeTwitter();
+      var reviews = [];
+
+      if (options.type === 'twitter') {
+        reviews = this.generateTwitterReviews(options.postIds);
+        this.updateContainer(options.selector, reviews);
+        this.initializeCarousel(options.selector, Object.assign({}, this.carouselOptions, options.carouselOptions));
+        this.initializeTwitter();
+      } else if (options.type === 'instagram') {
+        reviews = this.generateInstagramReviews(options.postIds);
+        this.updateContainer(options.selector, reviews);
+        this.initializeCarousel(options.selector, Object.assign({}, this.carouselOptions, options.carouselOptions));
+      }
     }
 
     _createClass(Reviews, [{
@@ -10081,8 +10114,8 @@
         container.innerHTML = glideTrack.outerHTML;
       }
     }, {
-      key: "generateReviews",
-      value: function generateReviews(ids) {
+      key: "generateTwitterReviews",
+      value: function generateTwitterReviews(ids) {
         var _this = this;
 
         var reviews = [];
@@ -10095,17 +10128,38 @@
         return reviews;
       }
     }, {
+      key: "generateInstagramReviews",
+      value: function generateInstagramReviews(ids) {
+        var _this2 = this;
+
+        var reviews = [];
+        ids.forEach(function (id) {
+          var review = document.createElement("li");
+          review.className = _this2.options.className + " glide__slide";
+          var iframe = document.createElement("iframe");
+          iframe.src = "https://www.instagram.com/p/".concat(id, "/embed");
+          iframe.frameBorder = "0";
+          iframe.scrolling = "no";
+          iframe.allowTransparency = "true";
+          iframe.width = 350;
+          iframe.height = 530;
+          review.innerHTML = iframe.outerHTML;
+          reviews.push(review.outerHTML);
+        });
+        return reviews;
+      }
+    }, {
       key: "initializeTwitter",
       value: function initializeTwitter() {
-        var _this2 = this;
+        var _this3 = this;
 
         var tweets = document.querySelectorAll("." + this.options.className);
         tweets.forEach(function (tweet) {
           twttr.widgets.createTweet(tweet.id, tweet, {
-            conversation: _this2.options.conversation || defaultOptions.conversation,
-            cards: _this2.options.cards || defaultOptions.cards,
-            linkColor: _this2.options.linkColor || defaultOptions.linkColor,
-            theme: _this2.options.theme || defaultOptions.theme
+            conversation: _this3.options.conversation || defaultOptions.conversation,
+            cards: _this3.options.cards || defaultOptions.cards,
+            linkColor: _this3.options.linkColor || defaultOptions.linkColor,
+            theme: _this3.options.theme || defaultOptions.theme
           });
         });
       }

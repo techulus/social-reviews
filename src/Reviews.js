@@ -1,5 +1,6 @@
 import Glide from "@glidejs/glide";
 import "@glidejs/glide/dist/css/glide.core.min.css";
+import "./styles.css";
 
 const defaultOptions = {
 	conversation: "none", // or all
@@ -8,8 +9,26 @@ const defaultOptions = {
 	theme: "light" // or dark
 };
 
+const errorLog = (data) => {
+	console.error("[social-reviews]", data)
+}
+
+const validSocialNetworks = ['twitter', 'instagram']
 export default class Reviews {
 	constructor(options) {
+		if (!options) {
+			return errorLog("Required options are missing, please check documentation: https://github.com/techulus/social-reviews#quick-start")
+		}
+		if (!options.selector) {
+			return errorLog("Option 'selector' is missing, please check documentation: https://github.com/techulus/social-reviews#quick-start")
+		}
+		if (!options.type || !validSocialNetworks.includes(options.type)) {
+			return errorLog("Option 'type' is missing or invalid, please check documentation: https://github.com/techulus/social-reviews#quick-start")
+		}
+		if (!options.postIds || !options.postIds.length) {
+			return errorLog("Option 'postIds' is missing, please check documentation: https://github.com/techulus/social-reviews#quick-start")
+		}
+
 		this.options = options;
 		this.options.className = `${options.selector.replace("#", "")}-tweets`;
 
@@ -30,10 +49,17 @@ export default class Reviews {
 			}
 		};
 
-		const reviews = this.generateReviews(options.tweetIds);
-		this.updateContainer(options.selector, reviews);
-		this.initializeCarousel(options.selector, Object.assign({}, this.carouselOptions, options.carouselOptions));
-		this.initializeTwitter();
+		let reviews = []
+		if (options.type === 'twitter') {
+			reviews = this.generateTwitterReviews(options.postIds);
+			this.updateContainer(options.selector, reviews);
+			this.initializeCarousel(options.selector, Object.assign({}, this.carouselOptions, options.carouselOptions));
+			this.initializeTwitter();
+		} else if (options.type === 'instagram') {
+			reviews = this.generateInstagramReviews(options.postIds);
+			this.updateContainer(options.selector, reviews);
+			this.initializeCarousel(options.selector, Object.assign({}, this.carouselOptions, options.carouselOptions));
+		}
 	}
 
 	updateContainer(selector, reviews) {
@@ -54,12 +80,32 @@ export default class Reviews {
 		container.innerHTML = glideTrack.outerHTML;
 	}
 
-	generateReviews(ids) {
+	generateTwitterReviews(ids) {
 		const reviews = [];
 		ids.forEach(id => {
 			const review = document.createElement("li");
 			review.className = this.options.className + " glide__slide";
 			review.id = id;
+			reviews.push(review.outerHTML);
+		});
+		return reviews;
+	}
+
+	generateInstagramReviews(ids) {
+		const reviews = [];
+		ids.forEach(id => {
+			const review = document.createElement("li");
+			review.className = this.options.className + " glide__slide";
+
+			const iframe = document.createElement("iframe");
+			iframe.src = `https://www.instagram.com/p/${id}/embed`
+			iframe.frameBorder = "0"
+			iframe.scrolling = "no"
+			iframe.allowTransparency = "true"
+			iframe.width = 350
+			iframe.height = 530
+
+			review.innerHTML = iframe.outerHTML
 			reviews.push(review.outerHTML);
 		});
 		return reviews;

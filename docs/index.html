@@ -11,7 +11,7 @@
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet">
 	<style>
 		body {
 			font-family: 'Montserrat', sans-serif;
@@ -19,6 +19,8 @@
 
 		h1 {
 			font-size: 4em;
+			font-weight: 800;
+			color: rgb(33, 153, 256);
 		}
 
 		h1,
@@ -42,35 +44,37 @@
 
 	<div class="container">
 		<h1 style="margin-top: 75px;">Social Reviews</h1>
-		<h3>Social proof your website and Impress your web visitors with Twitter testimonials.</h3>
-
-		<h2>DEMO</h2>
-		<h3>Thoughts on iPhone XS</h3>
-		<div id="social-review-1"></div>
+		<h3>Social proof your website and Impress your web visitors with Twitter / Instagram testimonials.</h3>
 
 		<div class="btn-group" role="group">
-			<a href="https://github.com/techulus/social-reviews" class="btn btn-default">Documentation</a>
-			<a href="https://github.com/techulus/social-reviews" class="btn btn-default">GitHub</a>
-			<a href="https://github.com/techulus/social-reviews/issues" class="btn btn-default">Issues</a>
+			<a href="https://github.com/techulus/social-reviews" class="btn btn-default btn-lg">Documentation</a>
+			<a href="https://github.com/techulus/social-reviews" class="btn btn-default btn-lg">GitHub</a>
+			<a href="https://github.com/techulus/social-reviews/issues" class="btn btn-default btn-lg">Issues</a>
 		</div>
-		<!-- <h3>Thoughts on iPhone XS - Cards</h3> -->
-		<!-- <div id="social-review-2"></div> -->
 
-		<small style="margin-top: 25px; display: block;">© 2018 Techulus, LLC | <a href="https://techulus.com/" target="_blank">techulus.com</a></small>
+		<h2>DEMO</h2>
+		<h3><img src="https://cdnjs.cloudflare.com/ajax/libs/webicons/2.0.0/webicons/webicon-twitter-m.png"/> iPhone XS</h3>
+		<div id="social-review-1"></div>
+
+		<h3><img src="https://cdnjs.cloudflare.com/ajax/libs/webicons/2.0.0/webicons/webicon-instagram-m.png"/> iPhone XS</h3>
+		<div id="social-review-2"></div>
+
+		<small style="margin-top: 30px; margin-bottom: 35px; display: block;">© 2018 Techulus, LLC | <a href="https://techulus.com/" target="_blank">techulus.com</a></small>
 	</div>
 
 	<script src="/social-reviews.min.js"></script>
 	<script>
-		var reviews = new SocialReview({
+		new SocialReview({
 			selector: '#social-review-1',
-			tweetIds: ['1044414534792863744', '1044779222844104704', '1045656805882228736', '1047160680741310465', '1044705162441478147']
+			type: 'twitter',
+			postIds: ['1044414534792863744', '1044779222844104704', '1045656805882228736', '1047160680741310465', '1044705162441478147']
 		})
 
-		// var reviewsCards = new SocialReview({
-		// 	selector: '#social-review-2',
-		// 	tweetIds: ['1044414534792863744', '1044779222844104704', '1045656805882228736', '1047160680741310465', '1044705162441478147'],
-		// 	cards: 'visible'
-		// })
+		new SocialReview({
+			selector: '#social-review-2',
+			type: 'instagram',
+			postIds: ['BohDCd_HWiT', 'BoBMklZlyDZ', 'Boiam0gl2Q4', 'BoiXh2yHHML', 'BoiXglrFMsc'],
+		})
 	</script>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
