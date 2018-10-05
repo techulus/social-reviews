@@ -1,5 +1,5 @@
 # Social Reviews
-Social proof your website and Impress your web visitors with Twitter testimonials.
+Social proof your website and Impress your web visitors with Twitter / Instagram testimonials.
 
 ### [DEMO](https://reviews.techulus.com/)
 
@@ -28,17 +28,21 @@ HTML, Create a container to hold the carousel:
 JS, Initialise the review carousel:
 ```javascript
 new SocialReview({
-  selector: '#social-review',
-  tweetIds: ['1044414534792863744', '1044779222844104704']
+  selector: '#social-review-1',
+  type: 'twitter',
+  postIds: ['1044414534792863744', '1044779222844104704', '1045656805882228736', '1047160680741310465', '1044705162441478147']
 })
 ```
 
 ## Options & Configuration
 
 - `selector`: CSS selector for container
-- `tweetIds`: Twitter post ids
+- `type`: Social network type, `twitter` or `instagram`
+- `postIds`: Post ids
 - `conversation`: `none` or `all`
 - `cards`: `hidden`or `visible`
 - `linkColor`: `rgb(33, 153, 256)`, default is blue
 - `theme`: `light` or `dark`
 - `carouselOptions`: All options supported by https://glidejs.com/docs/options/
+
+## [Sample Code](https://github.com/techulus/social-reviews/blob/master/docs/index.html)
