@@ -2,6 +2,7 @@
 Social proof your website and Impress your web visitors with Twitter / Instagram testimonials.
 
 ### [DEMO](https://reviews.techulus.com/)
+### [Sample Code](https://github.com/techulus/social-reviews/blob/master/docs/index.html)
 
 ## Installing
 You can quickly install via [npm](https://www.npmjs.com/package/social-reviews):
@@ -44,5 +45,3 @@ new SocialReview({
 - `linkColor`: `rgb(33, 153, 256)`, default is blue
 - `theme`: `light` or `dark`
 - `carouselOptions`: All options supported by https://glidejs.com/docs/options/
-
-## [Sample Code](https://github.com/techulus/social-reviews/blob/master/docs/index.html)
