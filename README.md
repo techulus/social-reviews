@@ -1,3 +1,8 @@
+<a href="https://techulus.com" target="_blank">
+  <img src="https://techulus.in/assets/img/logo.png" width="200"/>
+</a>
+
+
 # Social Reviews
 Social proof your website and Impress your web visitors with Twitter / Instagram testimonials.
 
@@ -40,8 +45,11 @@ new SocialReview({
 - `selector`: CSS selector for container
 - `type`: Social network type, `twitter` or `instagram`
 - `postIds`: Post ids
+- `carouselOptions`: All options supported by https://glidejs.com/docs/options/
+
+### Twitter Configuration
+
 - `conversation`: `none` or `all`
 - `cards`: `hidden`or `visible`
 - `linkColor`: `rgb(33, 153, 256)`, default is blue
 - `theme`: `light` or `dark`
-- `carouselOptions`: All options supported by https://glidejs.com/docs/options/
