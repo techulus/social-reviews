@@ -53,3 +53,6 @@ new SocialReview({
 - `cards`: `hidden`or `visible`
 - `linkColor`: `rgb(33, 153, 256)`, default is blue
 - `theme`: `light` or `dark`
+
+### Instagram Configuration
+- `height`: Height of Instagram post
