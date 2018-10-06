@@ -6,7 +6,8 @@ const defaultOptions = {
 	conversation: "none", // or all
 	cards: "hidden", // or visible
 	linkColor: "rgb(33, 153, 256)", // default is blue
-	theme: "light" // or dark
+	theme: "light", // or dark
+	height: 410
 };
 
 const errorLog = (data) => {
@@ -103,7 +104,7 @@ export default class Reviews {
 			iframe.scrolling = "no"
 			iframe.allowTransparency = "true"
 			iframe.width = 350
-			iframe.height = 530
+			iframe.height = defaultOptions.height || this.options.height
 
 			review.innerHTML = iframe.outerHTML
 			reviews.push(review.outerHTML);

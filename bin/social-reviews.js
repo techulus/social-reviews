@@ -10033,8 +10033,9 @@
     // or visible
     linkColor: "rgb(33, 153, 256)",
     // default is blue
-    theme: "light" // or dark
-
+    theme: "light",
+    // or dark
+    height: 410
   };
 
   var errorLog = function errorLog(data) {
@@ -10142,7 +10143,7 @@
           iframe.scrolling = "no";
           iframe.allowTransparency = "true";
           iframe.width = 350;
-          iframe.height = 530;
+          iframe.height = defaultOptions.height || _this2.options.height;
           review.innerHTML = iframe.outerHTML;
           reviews.push(review.outerHTML);
         });
