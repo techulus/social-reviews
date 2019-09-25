@@ -1,8 +1,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.SocialReview = factory());
-}(this, (function () { 'use strict';
+  (global = global || self, global.SocialReview = factory());
+}(this, function () { 'use strict';
 
   function _typeof(obj) {
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -492,7 +492,7 @@
 
               return i;
             },
-            catch: function _catch(t) {
+            "catch": function _catch(t) {
               return this.then(null, t);
             }
           };
@@ -623,7 +623,7 @@
 
       function c(t) {
         var e;
-        v && (m[t] ? (e = d(), i("_twitter", t, e - m[t])) : r("timeEnd() called before time() for id: ", t));
+        v && (m[t] ? (e = d(), i()) : r());
       }
 
       function d() {
@@ -1657,7 +1657,7 @@
       }, i.prototype.insertIntoDom = function () {
         var t = this;
         return this._widget ? this._sandbox.insert(this._widget.id, {
-          class: [this._className, this._renderedClassName].join(" ")
+          "class": [this._className, this._renderedClassName].join(" ")
         }, null, this._insertionStrategy).then(function () {
           t._insertedIntoDom = !0;
         }) : c.reject(new Error("cannot insert widget into DOM before it is initialized"));
@@ -1965,7 +1965,7 @@
           if (r(t)) return i(t);
           e = d(t, function (t) {
             return h.noticeSeen(t.input.namespace);
-          }), n = e.true, s = e.false, n && n.length > 0 && (n = n.slice(0, 1), f.canFlushOneItem(n[0]) || (n[0].input.data.message = ""), i(n)), s && (r(s) ? i : o)(s);
+          }), n = e["true"], s = e["false"], n && n.length > 0 && (n = n.slice(0, 1), f.canFlushOneItem(n[0]) || (n[0].input.data.message = ""), i(n)), s && (r(s) ? i : o)(s);
         }
       }
 
@@ -3160,7 +3160,7 @@
           e && e.name && e.assignment && (n = {}, n[e.name] = {
             bucket: e.assignment
           }, s.experiments = _.aug(s.experiments, n)), t.resolve(s);
-        }).catch(function (e) {
+        })["catch"](function (e) {
           t.reject(e);
         }), t.promise;
       }
@@ -3614,7 +3614,7 @@
             twcon: t.getAttribute("data-twcon")
           }, o.getActiveExperimentDataString().then(function (n) {
             t.setAttribute(u, !0), e.twgr = n, t.href = i(t.href, e);
-          }.bind(this)).catch(function () {
+          }.bind(this))["catch"](function () {
             t.setAttribute(u, !0), t.href = i(t.href, e);
           }.bind(this))) : a.resolve();
         }), t.after("render", function () {
@@ -4836,7 +4836,7 @@
           };
           return n ? a.getActiveExperimentDataString().then(function (e) {
             r.twgr = e, o(n, r), this.scribeOpenClick(t);
-          }.bind(this)).catch(function () {
+          }.bind(this))["catch"](function () {
             o(n, r), this.scribeOpenClick(t);
           }.bind(this)) : d.resolve();
         }), t.define("attemptToOpenTarget", function (t, e) {
@@ -5118,7 +5118,7 @@
           widgetOrigin: e.widgetOrigin,
           borderRadius: e.borderRadius,
           autoPlay: e.autoPlay
-        }, n = c(t, ".wvp-player-container"), n.length > 0) return l && d.setBaseUrl(l), {
+        }, n = c(t, ".wvp-player-container"), n.length > 0) return {
           element: n[0],
           options: r
         };
@@ -5126,8 +5126,7 @@
 
       var u = n(1),
           c = n(88),
-          d = n(168),
-          l = null;
+          d = n(168);
       t.exports = {
         insertForTweet: r,
         insertForEvent: i,
@@ -6369,8 +6368,8 @@
   }();
 
   /*!
-   * Glide.js v3.2.3
-   * (c) 2013-2018 Jędrzej Chałubek <jedrzej.chalubek@gmail.com> (http://jedrzejchalubek.com/)
+   * Glide.js v3.4.1
+   * (c) 2013-2019 Jędrzej Chałubek <jedrzej.chalubek@gmail.com> (http://jedrzejchalubek.com/)
    * Released under the MIT License.
    */
 
@@ -6510,7 +6509,7 @@
      *
      * @type {String}
      */
-    animationTimingFunc: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
+    animationTimingFunc: 'cubic-bezier(.165, .840, .440, 1)',
 
     /**
      * Throttle costly events at most once per every wait milliseconds.
@@ -6617,7 +6616,7 @@
     };
   }();
 
-  var _extends$1 = Object.assign || function (target) {
+  var _extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
 
@@ -6829,7 +6828,7 @@
    * @return {Object}
    */
   function mergeOptions(defaults, settings) {
-    var options = _extends$1({}, defaults, settings);
+    var options = _extends({}, defaults, settings);
 
     // `Object.assign` do not deeply merge objects, so we
     // have to do it manually for every nested object
@@ -6837,15 +6836,15 @@
     // it's smaller and faster than some fancy
     // merging deep-merge algorithm script.
     if (settings.hasOwnProperty('classes')) {
-      options.classes = _extends$1({}, defaults.classes, settings.classes);
+      options.classes = _extends({}, defaults.classes, settings.classes);
 
       if (settings.classes.hasOwnProperty('direction')) {
-        options.classes.direction = _extends$1({}, defaults.classes.direction, settings.classes.direction);
+        options.classes.direction = _extends({}, defaults.classes.direction, settings.classes.direction);
       }
     }
 
     if (settings.hasOwnProperty('breakpoints')) {
-      options.breakpoints = _extends$1({}, defaults.breakpoints, settings.breakpoints);
+      options.breakpoints = _extends({}, defaults.breakpoints, settings.breakpoints);
     }
 
     return options;
@@ -7279,6 +7278,14 @@
           Events.emit('run', this.move);
 
           Components.Transition.after(function () {
+            if (_this.isStart()) {
+              Events.emit('run.start', _this.move);
+            }
+
+            if (_this.isEnd()) {
+              Events.emit('run.end', _this.move);
+            }
+
             if (_this.isOffset('<') || _this.isOffset('>')) {
               _this._o = false;
 
@@ -7317,8 +7324,6 @@
 
                 Glide.index = 0;
               }
-
-              Events.emit('run.end', move);
             } else if (countableSteps) {
               Glide.index += Math.min(length - Glide.index, -toInt(steps));
             } else {
@@ -7335,8 +7340,6 @@
 
                 Glide.index = length;
               }
-
-              Events.emit('run.start', move);
             } else if (countableSteps) {
               Glide.index -= Math.min(Glide.index, toInt(steps));
             } else {
@@ -7346,6 +7349,10 @@
 
           case '=':
             Glide.index = steps;
+            break;
+
+          default:
+            warn('Invalid direction pattern [' + direction + steps + '] has been used');
             break;
         }
       },
@@ -7399,9 +7406,11 @@
        * @returns {Object}
        */
       set: function set(value) {
+        var step = value.substr(1);
+
         this._m = {
           direction: value.substr(0, 1),
-          steps: value.substr(1) ? value.substr(1) : 0
+          steps: step ? toInt(step) ? toInt(step) : step : 0
         };
       }
     });
@@ -7417,17 +7426,10 @@
         var settings = Glide.settings;
         var length = Components.Html.slides.length;
 
-        // While number of slides inside instance is smaller
-        // that `perView` settings we should't run at all.
-        // Running distance has to be zero.
-
-        if (settings.perView > length) {
-          return 0;
-        }
-
         // If the `bound` option is acitve, a maximum running distance should be
         // reduced by `perView` and `focusAt` settings. Running distance
         // should end before creating an empty space after instance.
+
         if (Glide.isType('slider') && settings.focusAt !== 'center' && settings.bound) {
           return length - 1 - (toInt(settings.perView) - 1) + toInt(settings.focusAt);
         }
@@ -7921,10 +7923,11 @@
        * @return {Void}
        */
       setupSlides: function setupSlides() {
+        var width = this.slideWidth + 'px';
         var slides = Components.Html.slides;
 
         for (var i = 0; i < slides.length; i++) {
-          slides[i].style.width = this.slideWidth + 'px';
+          slides[i].style.width = width;
         }
       },
 
@@ -8140,8 +8143,10 @@
             classes = _Glide$settings.classes;
 
 
-        var start = slides.slice(0, perView);
-        var end = slides.slice(-perView);
+        var peekIncrementer = +!!Glide.settings.peek;
+        var part = perView + peekIncrementer;
+        var start = slides.slice(0, part);
+        var end = slides.slice(-part);
 
         for (var r = 0; r < Math.max(1, Math.floor(perView / slides.length)); r++) {
           for (var i = 0; i < start.length; i++) {
@@ -8180,6 +8185,7 @@
         var half = Math.floor(items.length / 2);
         var prepend = items.slice(0, half).reverse();
         var append = items.slice(half, items.length);
+        var width = Components.Sizes.slideWidth + 'px';
 
         for (var i = 0; i < append.length; i++) {
           wrapper.appendChild(append[i]);
@@ -8190,7 +8196,7 @@
         }
 
         for (var _i3 = 0; _i3 < items.length; _i3++) {
-          items[_i3].style.width = Components.Sizes.slideWidth + 'px';
+          items[_i3].style.width = width;
         }
       },
 
@@ -8269,6 +8275,7 @@
      * @param  {String|Array} events
      * @param  {Element|Window|Document} el
      * @param  {Function} closure
+     * @param  {Boolean|Object} capture
      * @return {Void}
      */
 
@@ -8294,18 +8301,21 @@
        *
        * @param  {String|Array} events
        * @param  {Element|Window|Document} el
+       * @param  {Boolean|Object} capture
        * @return {Void}
        */
 
     }, {
       key: 'off',
       value: function off(events, el) {
+        var capture = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
         if (isString(events)) {
           events = [events];
         }
 
         for (var i = 0; i < events.length; i++) {
-          el.removeEventListener(events[i], this.listeners[events[i]], false);
+          el.removeEventListener(events[i], this.listeners[events[i]], capture);
         }
       }
 
@@ -8877,6 +8887,28 @@
     return Transition;
   }
 
+  /**
+   * Test via a getter in the options object to see
+   * if the passive property is accessed.
+   *
+   * @see https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection
+   */
+
+  var supportsPassive = false;
+
+  try {
+    var opts = Object.defineProperty({}, 'passive', {
+      get: function get() {
+        supportsPassive = true;
+      }
+    });
+
+    window.addEventListener('testPassive', null, opts);
+    window.removeEventListener('testPassive', null, opts);
+  } catch (e) {}
+
+  var supportsPassive$1 = supportsPassive;
+
   var START_EVENTS = ['touchstart', 'mousedown'];
   var MOVE_EVENTS = ['touchmove', 'mousemove'];
   var END_EVENTS = ['touchend', 'touchcancel', 'mouseup', 'mouseleave'];
@@ -8894,6 +8926,7 @@
     var swipeStartX = 0;
     var swipeStartY = 0;
     var disabled = false;
+    var capture = supportsPassive$1 ? { passive: true } : false;
 
     var Swipe = {
       /**
@@ -8949,15 +8982,15 @@
           var subEySy = toInt(swipe.pageY) - swipeStartY;
           var powEX = Math.abs(subExSx << 2);
           var powEY = Math.abs(subEySy << 2);
-          var swipeHypotenuse = (powEX + powEY) * (powEX + powEY);
-          var swipeCathetus = powEY * powEY;
+          var swipeHypotenuse = Math.sqrt(powEX + powEY);
+          var swipeCathetus = Math.sqrt(powEY);
 
           swipeSin = Math.asin(swipeCathetus / swipeHypotenuse);
 
-          Components.Move.make(subExSx * toFloat(touchRatio));
-
           if (swipeSin * 180 / Math.PI < touchAngle) {
             event.stopPropagation();
+
+            Components.Move.make(subExSx * toFloat(touchRatio));
 
             Components.Html.root.classList.add(classes.dragging);
 
@@ -9038,13 +9071,13 @@
         if (settings.swipeThreshold) {
           Binder.on(START_EVENTS[0], Components.Html.wrapper, function (event) {
             _this.start(event);
-          });
+          }, capture);
         }
 
         if (settings.dragThreshold) {
           Binder.on(START_EVENTS[1], Components.Html.wrapper, function (event) {
             _this.start(event);
-          });
+          }, capture);
         }
       },
 
@@ -9055,8 +9088,8 @@
        * @return {Void}
        */
       unbindSwipeStart: function unbindSwipeStart() {
-        Binder.off(START_EVENTS[0], Components.Html.wrapper);
-        Binder.off(START_EVENTS[1], Components.Html.wrapper);
+        Binder.off(START_EVENTS[0], Components.Html.wrapper, capture);
+        Binder.off(START_EVENTS[1], Components.Html.wrapper, capture);
       },
 
 
@@ -9070,7 +9103,7 @@
 
         Binder.on(MOVE_EVENTS, Components.Html.wrapper, throttle(function (event) {
           _this2.move(event);
-        }, Glide.settings.throttle));
+        }, Glide.settings.throttle), capture);
       },
 
 
@@ -9080,7 +9113,7 @@
        * @return {Void}
        */
       unbindSwipeMove: function unbindSwipeMove() {
-        Binder.off(MOVE_EVENTS, Components.Html.wrapper);
+        Binder.off(MOVE_EVENTS, Components.Html.wrapper, capture);
       },
 
 
@@ -9321,9 +9354,8 @@
        * @return {Void}
        */
       click: function click(event) {
-        event.stopPropagation();
-
         if (prevented) {
+          event.stopPropagation();
           event.preventDefault();
         }
       },
@@ -9428,6 +9460,8 @@
      */
     var Binder = new EventsBinder();
 
+    var capture = supportsPassive$1 ? { passive: true } : false;
+
     var Controls = {
       /**
        * Inits arrows. Binds events listeners
@@ -9490,11 +9524,13 @@
         var settings = Glide.settings;
         var item = controls[Glide.index];
 
-        item.classList.add(settings.classes.activeNav);
+        if (item) {
+          item.classList.add(settings.classes.activeNav);
 
-        siblings(item).forEach(function (sibling) {
-          sibling.classList.remove(settings.classes.activeNav);
-        });
+          siblings(item).forEach(function (sibling) {
+            sibling.classList.remove(settings.classes.activeNav);
+          });
+        }
       },
 
 
@@ -9505,7 +9541,11 @@
        * @return {Void}
        */
       removeClass: function removeClass(controls) {
-        controls[Glide.index].classList.remove(Glide.settings.classes.activeNav);
+        var item = controls[Glide.index];
+
+        if (item) {
+          item.classList.remove(Glide.settings.classes.activeNav);
+        }
       },
 
 
@@ -9541,7 +9581,8 @@
        */
       bind: function bind(elements) {
         for (var i = 0; i < elements.length; i++) {
-          Binder.on(['click', 'touchstart'], elements[i], this.click);
+          Binder.on('click', elements[i], this.click);
+          Binder.on('touchstart', elements[i], this.click, capture);
         }
       },
 
@@ -9890,7 +9931,7 @@
      *
      * @type {Object}
      */
-    var defaults = _extends$1({}, settings);
+    var defaults = _extends({}, settings);
 
     var Breakpoints = {
       /**
@@ -9918,7 +9959,7 @@
      * Overwrite instance settings with currently matching breakpoint settings.
      * This happens right after component initialization.
      */
-    _extends$1(settings, Breakpoints.match(points));
+    _extends(settings, Breakpoints.match(points));
 
     /**
      * Update glide with settings of matched brekpoint:
@@ -9935,7 +9976,7 @@
     Events.on('update', function () {
       points = sortBreakpoints(points);
 
-      defaults = _extends$1({}, settings);
+      defaults = _extends({}, settings);
     });
 
     /**
@@ -9987,7 +10028,7 @@
       value: function mount() {
         var extensions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-        return get(Glide$$1.prototype.__proto__ || Object.getPrototypeOf(Glide$$1.prototype), 'mount', this).call(this, _extends$1({}, COMPONENTS, extensions));
+        return get(Glide$$1.prototype.__proto__ || Object.getPrototypeOf(Glide$$1.prototype), 'mount', this).call(this, _extends({}, COMPONENTS, extensions));
       }
     }]);
     return Glide$$1;
@@ -10176,5 +10217,5 @@
 
   return Reviews;
 
-})));
+}));
 //# sourceMappingURL=social-reviews.js.map
