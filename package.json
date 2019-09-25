@@ -1,5 +1,5 @@
 {
-  "name": "social-reviews",
+  "name": "@techulus/social-reviews",
   "version": "0.1.0",
   "description": "A compact solution for showing social reviews",
   "main": "bin/social-reviews.min.js",
